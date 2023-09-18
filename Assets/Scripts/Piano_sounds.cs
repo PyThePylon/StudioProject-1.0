@@ -3,18 +3,16 @@ using UnityEngine;
 public class SoundOnKeyPress : MonoBehaviour
 {
     public AudioClip soundToPlay;
-    private AudioSource audioSource1;
-    private AudioSource audioSource2;
-    private AudioSource audioSource3;
+    private AudioSource audioSource;
     int pianotime = 0;
     float maxdistance;
 
     void Start()
     {
         // Get the AudioSource components
-        audioSource1 = GetComponent<AudioSource>();
-        audioSource2 = GetComponent<AudioSource>();
-        audioSource3 = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
