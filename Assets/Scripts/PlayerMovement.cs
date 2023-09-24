@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float moveSpeed;
 
     void Start()
     {
+        moveSpeed = 15f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -20,6 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movePlayer = new Vector3(horizInput, 0.0f, vertiInput);
 
-        transform.Translate(movePlayer * 15f * Time.deltaTime);
+        transform.Translate(movePlayer * moveSpeed * Time.deltaTime);
     }
 }

@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestingScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/BedroomScene.unity
+    guid: 905bbd95840f8934795f0bcd882ea1d6
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoomScene.unity
+    guid: 3c804b829b037194ea96563813b63310
+  - enabled: 1
+    path: Assets/Scenes/ExamRoomScene.unity
+    guid: 005b202575f677347a684e816e32c54c
   m_configObjects: {}

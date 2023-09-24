@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class RandDialogue : MonoBehaviour
@@ -31,10 +29,26 @@ public class RandDialogue : MonoBehaviour
     [Header("NPC position")]
     public Transform npcPosition;
 
+    [Header("NPC Audio")]
+    public AudioSource npcAS;
+
     void Awake()
     {
         tmP.text = "";
         initialTextColor = tmP.color;
+
+        npcAS = GetComponent<AudioSource>();
+        if(npcAS != null)
+        {
+            npcAS.Play();
+
+            npcAS.volume = 0.0f;
+        }
+        else
+        {
+            return;
+        }
+
     }
 
 
@@ -45,7 +59,6 @@ public class RandDialogue : MonoBehaviour
 
         if(grabDist <= maxDist)
         {
-            Debug.Log("in range!");
             playerRange = true;
             if(!selectedDialogue)
             {
@@ -56,23 +69,27 @@ public class RandDialogue : MonoBehaviour
         }
         else
         {
-            Debug.Log("Not in range!");
             playerRange = false;
         }
 
         if (!playerRange && tmP.color.a > minAlpha)
         {
-            Debug.Log("fade!");
             Color newTxtColor = tmP.color;
             newTxtColor.a -= Time.deltaTime * fadeSpeed;
             tmP.color = newTxtColor;
 
         } else if (playerRange && tmP.color.a < 1.0f)
         {
-            Debug.Log("Dont fade!");
             Color newTxtColor = tmP.color;
             newTxtColor.a += Time.deltaTime * fadeSpeed;
             tmP.color = newTxtColor;
+        }
+
+        if (npcAS != null)
+        {
+            float maxVol = 1.0f;
+            float givenVol = Mathf.Clamp01(1.0f - (grabDist / maxDist)) * maxVol;
+            npcAS.volume = givenVol;
         }
 
     }
@@ -97,6 +114,7 @@ public class RandDialogue : MonoBehaviour
         }
 
         yield return new WaitForSeconds(5f);
+
         tmP.text = "";
         tmP.color = initialTextColor;
         selectedDialogue = false;

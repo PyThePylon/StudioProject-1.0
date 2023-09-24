@@ -23,7 +23,7 @@ public class SceneLoader : MonoBehaviour
     {
         if (scene == 0)
         {
-            SceneManager.LoadScene("The_Game");
+            SceneManager.LoadScene("TestingScene");
             gameObject.SetActive(true);
         }
         else if (scene == 1)
