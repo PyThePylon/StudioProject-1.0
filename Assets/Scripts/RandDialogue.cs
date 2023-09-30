@@ -32,10 +32,19 @@ public class RandDialogue : MonoBehaviour
     [Header("NPC Audio")]
     public AudioSource npcAS;
     public AudioClip[] npcAC;
-    [Range(-3,3)]
+    [Range(-3, 3)]
     [SerializeField] float minP = 0.5f;
-    [Range(-3,3)]
+    [Range(-3, 3)]
     [SerializeField] float maxP = 2f;
+    /*
+     * Ignore these audio samples for now. If you know a easier way to implement multiple audio's
+     * and have them randomly play after each bubble text go for it.
+    public AudioClip[] npcAC1;
+    public AudioClip[] npcAC2;
+    public AudioClip[] npcAC3;
+    public AudioClip[] npcAC4;
+    */
+
 
     void Awake()
     {
@@ -121,6 +130,11 @@ public class RandDialogue : MonoBehaviour
         tmP.text = "";
         tmP.color = initialTextColor;
         selectedDialogue = false;
+    }
+
+    void randomDialogueChoice()
+    {
+
     }
 
 
