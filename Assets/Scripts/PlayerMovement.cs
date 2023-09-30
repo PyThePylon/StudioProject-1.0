@@ -7,14 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed;
 
+
     void Start()
     {
-        moveSpeed = 15f;
+
+        Debug.Log("Loading!");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizInput = Input.GetAxis("Horizontal");
@@ -23,5 +25,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movePlayer = new Vector3(horizInput, 0.0f, vertiInput);
 
         transform.Translate(movePlayer * moveSpeed * Time.deltaTime);
+
+
     }
+
 }

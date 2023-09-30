@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 1828833851271090128}
   - component: {fileID: 6896666781135660609}
   - component: {fileID: 2608928662925416978}
-  - component: {fileID: 7496956860693183764}
+  - component: {fileID: 7380894042659695176}
   m_Layer: 0
   m_Name: Temp_Player
   m_TagString: Untagged
@@ -210,7 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e58caffab289274fa25d3829f58a5b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7496956860693183764
+  moveSpeed: 15
+--- !u!114 &7380894042659695176
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

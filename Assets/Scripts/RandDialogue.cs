@@ -31,6 +31,11 @@ public class RandDialogue : MonoBehaviour
 
     [Header("NPC Audio")]
     public AudioSource npcAS;
+    public AudioClip[] npcAC;
+    [Range(-3,3)]
+    [SerializeField] float minP = 0.5f;
+    [Range(-3,3)]
+    [SerializeField] float maxP = 2f;
 
     void Awake()
     {
@@ -38,16 +43,6 @@ public class RandDialogue : MonoBehaviour
         initialTextColor = tmP.color;
 
         npcAS = GetComponent<AudioSource>();
-        if(npcAS != null)
-        {
-            npcAS.Play();
-
-            npcAS.volume = 0.0f;
-        }
-        else
-        {
-            return;
-        }
 
     }
 
@@ -108,11 +103,19 @@ public class RandDialogue : MonoBehaviour
 
         for(int i = 0; i < grabTxt.Length; i++)
         {
+
+            int randClip = Random.Range(0, npcAC.Length);
+
             emptyTxt += grabTxt[i];
             tmP.text = emptyTxt;
-            yield return new WaitForSeconds(.25f);
-        }
 
+            npcAS.clip = npcAC[randClip];
+            npcAS.pitch = Random.Range(minP, maxP);
+            npcAS.Play();
+            yield return new WaitForSeconds(npcAS.clip.length);
+ 
+        }
+  
         yield return new WaitForSeconds(5f);
 
         tmP.text = "";
