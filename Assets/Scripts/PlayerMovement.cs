@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
         Debug.Log("Loading!");
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -24,8 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movePlayer = new Vector3(horizInput, 0.0f, vertiInput);
 
-        transform.Translate(movePlayer * moveSpeed * Time.deltaTime);
-
+        transform.Translate(movePlayer * moveSpeed * Time.fixedDeltaTime);
 
     }
 
