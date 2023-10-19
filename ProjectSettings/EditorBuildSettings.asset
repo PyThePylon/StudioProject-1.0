@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ExamRoomScene.unity
     guid: 005b202575f677347a684e816e32c54c
+  - enabled: 1
+    path: Assets/Scenes/SchoolScene.unity
+    guid: ce0c4a36584bdbd469e239e1da8282a0
   m_configObjects: {}

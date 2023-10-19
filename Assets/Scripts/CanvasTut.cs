@@ -37,12 +37,16 @@ public class CanvasTut : MonoBehaviour
                 }
                 else
                 {
-                    instucCanvas[2].gameObject.SetActive(true);
+                    if (playerRange)
+                    {
+                        instucCanvas[2].gameObject.SetActive(true);
+                    }
                 }
             }
         }
         else
         {
+            instucCanvas[2].gameObject.SetActive(false);
             playerRange = false;
         }
     }

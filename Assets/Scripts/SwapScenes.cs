@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,18 +7,15 @@ public class SwapScenes : MonoBehaviour
 
     string spawnName;
 
+    SceneFade fade;
+
+
     void Start()
     {
         spawnName = "playerSpawn";
+        fade = FindObjectOfType<SceneFade>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            swapGameScene();
-        }
-    }
 
     void swapGameScene()
     {
@@ -27,12 +25,13 @@ public class SwapScenes : MonoBehaviour
 
         GameObject grabPlayerTag = GameObject.FindGameObjectWithTag("Player");
 
-        if(grabPlayerTag != null)
+        StartCoroutine(sceneFade(nextScene));
+
+
+        if (grabPlayerTag != null)
         {
             Destroy(grabPlayerTag);
         }
-
-        SceneManager.LoadScene(nextScene);
 
         Transform sceneSpawn = GameObject.Find(spawnName).transform;
 
@@ -47,6 +46,14 @@ public class SwapScenes : MonoBehaviour
 
     }
 
+
+    public IEnumerator sceneFade(string loadScene)
+    {
+        fade.FadeIn();
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(loadScene);
+    }
+
     string grabScene(string nextSceneName)
     {
         switch(nextSceneName)
@@ -59,6 +66,16 @@ public class SwapScenes : MonoBehaviour
                 return "ExamRoomScene";
             default:
                 return "TestingScene";
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("CHANGE!");
+            swapGameScene();
+
         }
     }
 

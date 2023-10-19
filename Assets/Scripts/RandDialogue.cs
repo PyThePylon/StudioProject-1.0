@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class RandDialogue : MonoBehaviour
@@ -36,23 +38,19 @@ public class RandDialogue : MonoBehaviour
     [SerializeField] float minP = 0.5f;
     [Range(-3, 3)]
     [SerializeField] float maxP = 2f;
-    /*
-     * Ignore these audio samples for now. If you know a easier way to implement multiple audio's
-     * and have them randomly play after each bubble text go for it.
-    public AudioClip[] npcAC1;
-    public AudioClip[] npcAC2;
-    public AudioClip[] npcAC3;
-    public AudioClip[] npcAC4;
-    */
+
+
+    [Header("Text Movement")]
+    public float verticalSpeed = 0.5f;
+    public float verticalHeight = 0.1f;
+    private Vector3 initialPosition;
+
 
 
     void Awake()
     {
         tmP.text = "";
         initialTextColor = tmP.color;
-
-        npcAS = GetComponent<AudioSource>();
-
     }
 
 
@@ -63,6 +61,7 @@ public class RandDialogue : MonoBehaviour
 
         if(grabDist <= maxDist)
         {
+            Debug.Log("in range!");
             playerRange = true;
             if(!selectedDialogue)
             {
@@ -73,17 +72,21 @@ public class RandDialogue : MonoBehaviour
         }
         else
         {
+            Debug.Log("Not in range!");
             playerRange = false;
         }
-
+        
+        
         if (!playerRange && tmP.color.a > minAlpha)
         {
+            Debug.Log("fade!");
             Color newTxtColor = tmP.color;
             newTxtColor.a -= Time.deltaTime * fadeSpeed;
             tmP.color = newTxtColor;
 
         } else if (playerRange && tmP.color.a < 1.0f)
         {
+            Debug.Log("Dont fade!");
             Color newTxtColor = tmP.color;
             newTxtColor.a += Time.deltaTime * fadeSpeed;
             tmP.color = newTxtColor;
@@ -110,6 +113,8 @@ public class RandDialogue : MonoBehaviour
 
         string emptyTxt = "";
 
+
+
         for(int i = 0; i < grabTxt.Length; i++)
         {
 
@@ -122,19 +127,12 @@ public class RandDialogue : MonoBehaviour
             npcAS.pitch = Random.Range(minP, maxP);
             npcAS.Play();
             yield return new WaitForSeconds(npcAS.clip.length);
- 
         }
-  
-        yield return new WaitForSeconds(5f);
 
+        yield return new WaitForSeconds(5f);
         tmP.text = "";
         tmP.color = initialTextColor;
         selectedDialogue = false;
-    }
-
-    void randomDialogueChoice()
-    {
-
     }
 
 
