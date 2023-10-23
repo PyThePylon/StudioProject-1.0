@@ -64,6 +64,8 @@ public class SwapScenes : MonoBehaviour
                 return "WaitingRoomScene";
             case "WaitingRoomScene":
                 return "ExamRoomScene";
+            case "ExamRoomScene":
+                return "SchoolScene";
             default:
                 return "TestingScene";
         }

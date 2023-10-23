@@ -11,7 +11,6 @@ public class SceneFade : MonoBehaviour
 
     public float fadeTime;
 
-    // Update is called once per frame
     void Update()
     {
         if(fadeIn == true)
