@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2608928662925416978, guid: 5b18e086cfe880a4c8ef91fcd08b5a18, type: 3}
+      propertyPath: npcCube
+      value: 
+      objectReference: {fileID: 1739798861}
     - target: {fileID: 7380894042659695176, guid: 5b18e086cfe880a4c8ef91fcd08b5a18, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -901,6 +905,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPCExample
       objectReference: {fileID: 0}
+    - target: {fileID: 1741247000992295155, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1741247000992295159, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -947,3 +955,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
+--- !u!1 &1739798861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1741247000992295155, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
+  m_PrefabInstance: {fileID: 1739798860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1739798865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739798861}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
