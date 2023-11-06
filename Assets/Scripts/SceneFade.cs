@@ -13,27 +13,21 @@ public class SceneFade : MonoBehaviour
 
     void Update()
     {
-        if(fadeIn == true)
+        if (fadeIn)
         {
-            if(cg.alpha < 1)
+            cg.alpha = Mathf.Clamp(cg.alpha + Time.deltaTime / fadeTime, 0, 1);
+            if (cg.alpha >= 1)
             {
-                cg.alpha += fadeTime * Time.deltaTime;
-                if(cg.alpha >= 1)
-                {
-                    fadeIn = false;
-                }
+                fadeIn = false;
             }
         }
 
-        if (fadeOut == true)
+        if (fadeOut)
         {
-            if (cg.alpha >= 0)
+            cg.alpha = Mathf.Clamp(cg.alpha - Time.deltaTime / fadeTime, 0, 1);
+            if (cg.alpha <= 0)
             {
-                cg.alpha -= fadeTime * Time.deltaTime;
-                if (cg.alpha == 0)
-                {
-                    fadeOut = false;
-                }
+                fadeOut = false;
             }
         }
     }

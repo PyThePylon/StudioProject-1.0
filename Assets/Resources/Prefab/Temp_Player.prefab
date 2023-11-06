@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  npcCube: {fileID: 1741247000992295155, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
 --- !u!54 &-1770494140501669801
 Rigidbody:
   m_ObjectHideFlags: 0

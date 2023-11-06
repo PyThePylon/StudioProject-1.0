@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class CanvasTut : MonoBehaviour
 {
@@ -10,13 +11,6 @@ public class CanvasTut : MonoBehaviour
     public Transform playerPos;
     public Canvas[] instucCanvas;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float grabDist = Vector3.Distance(abaPosition.position, playerPos.position);
@@ -25,13 +19,13 @@ public class CanvasTut : MonoBehaviour
         {
             playerRange = true;
 
-            if(playerRange && showInstrucOnce <= 0)
+            if (playerRange && showInstrucOnce <= 0)
             {
                 instucCanvas[0].gameObject.SetActive(true);
             }
             else
             {
-                if(playerRange && showInstrucOnce == 1)
+                if (playerRange && showInstrucOnce == 1)
                 {
                     instucCanvas[1].gameObject.SetActive(true);
                 }
@@ -50,6 +44,7 @@ public class CanvasTut : MonoBehaviour
             playerRange = false;
         }
     }
+   
 
 
 }

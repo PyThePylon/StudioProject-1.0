@@ -6,50 +6,55 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    private const string TestingScene = "TestingScene";
+    private const string ControlsScreen = "ControlsScreen";
+    private const string CreditsScreen = "CreditsScreen";
+    private const string MainMenu = "MainMenu";
+    private const string SettingsScreen = "SettingsScreen";
+
     private void Start()
     {
-        if (PlayerPrefs.GetFloat("Volume") == 0)
-        {
-            AudioListener.volume = 0.5f;
-            PlayerPrefs.SetFloat("Volume", 0.5f);
-        }
-        else
-        {
-            AudioListener.volume = PlayerPrefs.GetFloat("Volume");
-        }
+        InitializeVolume();
+    }
+
+    private void InitializeVolume()
+    {
+        float volume = PlayerPrefs.GetFloat("Volume", 0.5f);
+        AudioListener.volume = volume;
+        PlayerPrefs.SetFloat("Volume", volume);
     }
 
     public void LoadGameScene(int scene)
     {
-        if (scene == 0)
+        string sceneName = GetSceneName(scene);
+        if (!string.IsNullOrEmpty(sceneName))
         {
-            SceneManager.LoadScene("TestingScene");
-            gameObject.SetActive(true);
-        }
-        else if (scene == 1)
-        {
-            SceneManager.LoadScene("ControlsScreen");
-            gameObject.SetActive(true);
-        }
-        else if (scene == 2)
-        {
-            SceneManager.LoadScene("CreditsScreen"); //Just replace with the credits scene name
-            gameObject.SetActive(true);
-        }
-        else if (scene == 3)
-        {
-            SceneManager.LoadScene("MainMenu");
-            gameObject.SetActive(true);
-        }
-        else if (scene == 4)
-        {
-            SceneManager.LoadScene("SettingsScreen");
+            SceneManager.LoadScene(sceneName);
             gameObject.SetActive(true);
         }
         else
         {
             Application.Quit();
             Debug.Log("Game Closed");
+        }
+    }
+
+    private string GetSceneName(int scene)
+    {
+        switch (scene)
+        {
+            case 0:
+                return TestingScene;
+            case 1:
+                return ControlsScreen;
+            case 2:
+                return CreditsScreen;
+            case 3:
+                return MainMenu;
+            case 4:
+                return SettingsScreen;
+            default:
+                return null;
         }
     }
 }

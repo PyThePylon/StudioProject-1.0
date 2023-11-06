@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class RandDialogue : MonoBehaviour
@@ -43,9 +41,12 @@ public class RandDialogue : MonoBehaviour
     [Header("Text Movement")]
     public float verticalSpeed = 0.5f;
     public float verticalHeight = 0.1f;
-    private Vector3 initialPosition;
 
-
+    private float timeCounter = 0f;
+    public float waveSpeed = 1.0f;
+    public float waveHeight = 0.3f;
+    public float maxWaveHeight = 0.5f; // Set your desired maximum wave height
+    public float minWaveHeight = -0.5f;
 
     void Awake()
     {
@@ -75,8 +76,42 @@ public class RandDialogue : MonoBehaviour
             Debug.Log("Not in range!");
             playerRange = false;
         }
-        
-        
+
+        timeCounter += Time.deltaTime * waveSpeed;
+
+    // Create a copy of the original vertices for manipulation
+    Vector3[] vertices = tmP.textInfo.meshInfo[0].vertices;
+
+    for (int i = 0; i < tmP.textInfo.characterCount; i++)
+    {
+        // Get the current character info
+        TMP_CharacterInfo charInfo = tmP.textInfo.characterInfo[i];
+
+        if (!charInfo.isVisible)
+        {
+            continue;
+        }
+
+        // Calculate the wave effect
+        float yOffset = Mathf.Sin(timeCounter + i * 0.25f) * waveHeight * 0.05f;
+
+        // Clamp the yOffset to keep it within the desired range
+        yOffset = Mathf.Clamp(yOffset, minWaveHeight, maxWaveHeight);
+
+        // Apply the wave effect to each character's vertices
+        int vertexIndex = charInfo.vertexIndex;
+
+        // Apply the wave effect to the bottom vertices of the character
+        vertices[vertexIndex + 0] += new Vector3(0, yOffset, 0);
+        vertices[vertexIndex + 1] += new Vector3(0, yOffset, 0);
+        vertices[vertexIndex + 2] += new Vector3(0, yOffset, 0);
+        vertices[vertexIndex + 3] += new Vector3(0, yOffset, 0);
+    }
+
+    // Update the altered vertices in the text mesh
+    tmP.textInfo.meshInfo[0].mesh.vertices = vertices;
+    tmP.UpdateGeometry(tmP.textInfo.meshInfo[0].mesh, 0);
+
         if (!playerRange && tmP.color.a > minAlpha)
         {
             Debug.Log("fade!");
@@ -123,6 +158,9 @@ public class RandDialogue : MonoBehaviour
             emptyTxt += grabTxt[i];
             tmP.text = emptyTxt;
 
+            Vector3 textPosition = npcPosition.position + Vector3.up * 2.0f; // Adjust the '2.0f' value to position the text as desired
+            tmP.transform.position = textPosition;
+
             npcAS.clip = npcAC[randClip];
             npcAS.pitch = Random.Range(minP, maxP);
             npcAS.Play();
@@ -132,6 +170,7 @@ public class RandDialogue : MonoBehaviour
         yield return new WaitForSeconds(5f);
         tmP.text = "";
         tmP.color = initialTextColor;
+        tmP.transform.position = new Vector3(0, 0, 0);
         selectedDialogue = false;
     }
 

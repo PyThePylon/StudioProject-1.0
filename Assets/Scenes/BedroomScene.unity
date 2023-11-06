@@ -844,6 +844,11 @@ MonoBehaviour:
   - {fileID: 681430980}
   - {fileID: 248418658}
   - {fileID: 166295694}
+  tmP: {fileID: 0}
+  waveSpeed: 1
+  waveHeight: 0.1
+  maxWaveHeight: 0.5
+  minWaveHeight: -0.5
 --- !u!1 &588143606
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +909,7 @@ MonoBehaviour:
   cg: {fileID: 1628471002}
   fadeIn: 0
   fadeOut: 0
-  fadeTime: 1
+  fadeTime: 5
 --- !u!1001 &602538677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1000,7 +1005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &681430978
 MonoBehaviour:
   m_ObjectHideFlags: 0
