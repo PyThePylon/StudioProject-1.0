@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    private const string TestingScene = "TestingScene";
+    private const string BedRoom = "BedroomScene";
     private const string ControlsScreen = "ControlsScreen";
     private const string CreditsScreen = "CreditsScreen";
     private const string MainMenu = "MainMenu";
@@ -44,7 +44,7 @@ public class SceneLoader : MonoBehaviour
         switch (scene)
         {
             case 0:
-                return TestingScene;
+                return BedRoom;
             case 1:
                 return ControlsScreen;
             case 2:

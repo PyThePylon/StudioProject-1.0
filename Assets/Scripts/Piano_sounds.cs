@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SoundOnKeyPress : MonoBehaviour
+public class Piano_sounds : MonoBehaviour
 {
     public AudioClip soundToPlay;
     private AudioSource audioSource;

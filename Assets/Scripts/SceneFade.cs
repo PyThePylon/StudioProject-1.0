@@ -13,6 +13,8 @@ public class SceneFade : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("Fade in: " + fadeIn);
+        Debug.Log("Fade out: " + fadeOut);
         if (fadeIn)
         {
             cg.alpha = Mathf.Clamp(cg.alpha + Time.deltaTime / fadeTime, 0, 1);
