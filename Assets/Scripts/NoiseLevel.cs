@@ -26,15 +26,8 @@ public class NoiseLevel : MonoBehaviour
         {
             if (audioSource.volume > overstimulationThreshold)
             {
-                ApplyNoiseOverstimulation(audioSource);
+                //ApplyNoiseOverstimulation(audioSource);
             }
         }
-    }
-
-    void ApplyNoiseOverstimulation(AudioSource overstimulatedSource)
-    {
-        // Your noise overstimulation logic goes here
-        // You can modify the environment, visuals, or perform any actions to indicate overstimulation.
-        Debug.Log($"Noise overstimulation triggered for {overstimulatedSource.gameObject.name}!");
     }
 }
