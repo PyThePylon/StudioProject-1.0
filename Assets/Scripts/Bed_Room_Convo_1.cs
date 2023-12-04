@@ -13,6 +13,9 @@ public class Bed_Room_Convo_1 : MonoBehaviour
     public GameObject npc1;
     public GameObject npc2;
 
+    // Reference to the Dialogue script
+    public Dialogue dialogueScript;
+
     void Start()
     {
         StartCoroutine(Type());
@@ -24,6 +27,7 @@ public class Bed_Room_Convo_1 : MonoBehaviour
         {
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
+            dialogueScript.PlayRandomDialogue();
         }
         yield return new WaitForSeconds(2f);
 
@@ -32,7 +36,7 @@ public class Bed_Room_Convo_1 : MonoBehaviour
             if (index == 3)
             {
                 sceneFade.fadeIn = true;
-                sceneFade.FadeIn(); 
+                sceneFade.FadeIn();
             }
             index++;
             textDisplay.text = "";
@@ -43,13 +47,13 @@ public class Bed_Room_Convo_1 : MonoBehaviour
             sceneFade.fadeOut = true;
             sceneFade.FadeOut();
 
+            // Stop audio when dialogue is complete
+
             yield return new WaitForSeconds(2f);
             textDisplay.enabled = false;
             Destroy(npc1);
             Destroy(npc2);
         }
-
-
     }
 
     // Example sentences for the dialogue
@@ -71,3 +75,4 @@ public class Bed_Room_Convo_1 : MonoBehaviour
         InitializeSentences();
     }
 }
+

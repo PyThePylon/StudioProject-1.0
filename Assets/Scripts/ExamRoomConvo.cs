@@ -16,6 +16,8 @@ public class ExamRoomConvo : MonoBehaviour
     public GameObject npc2;
     public GameObject npc3;
 
+    public Dialogue dialogueScript;
+
     void Awake()
     {
         InitializeSentences();
@@ -34,6 +36,7 @@ public class ExamRoomConvo : MonoBehaviour
         {
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
+            dialogueScript.PlayRandomDialogue();
         }
         yield return new WaitForSeconds(2f);
 

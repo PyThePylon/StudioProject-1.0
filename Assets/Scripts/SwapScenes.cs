@@ -1,19 +1,23 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SwapScenes : MonoBehaviour
 {
 
-
-    SceneFade fade;
-
+    string spawnName;
 
     void Start()
     {
-        fade = FindObjectOfType<SceneFade>();
+        spawnName = "playerSpawn";
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            swapGameScene();
+        }
+    }
 
     void swapGameScene()
     {
@@ -22,44 +26,25 @@ public class SwapScenes : MonoBehaviour
         string nextScene = grabScene(currScene);
 
         GameObject grabPlayerTag = GameObject.FindGameObjectWithTag("Player");
-        Vector3 playerPosition = Vector3.zero;
 
-        if (grabPlayerTag != null)
+        if(grabPlayerTag != null)
         {
-            playerPosition = grabPlayerTag.transform.position;
             Destroy(grabPlayerTag);
         }
 
-        StartCoroutine(sceneFade(nextScene, playerPosition));
-    }
+        SceneManager.LoadScene(nextScene);
 
+        Transform sceneSpawn = GameObject.Find(spawnName).transform;
 
-    public IEnumerator sceneFade(string loadScene, Vector3 playerPosition)
-    {
-        fade.FadeIn();
-
-        yield return new WaitForSeconds(fade.fadeTime); // Wait for the fade-in to complete
-
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(loadScene);
-        asyncLoad.allowSceneActivation = false; // Prevent the scene from activating immediately
-
-        while (!asyncLoad.isDone)
+        if(sceneSpawn != null)
         {
-            if (asyncLoad.progress >= 0.9f)
-            {
-                asyncLoad.allowSceneActivation = true; // Allow the scene to activate
-            }
-            yield return null;
+            Instantiate(Resources.Load("Prefab/Temp_Player"));
+        }
+        else
+        {
+            Debug.Log("SpawnPoint missing!");
         }
 
-        yield return new WaitForSeconds(0.1f); // Add a slight delay to ensure the scene is fully loaded
-
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            player.transform.position = playerPosition;
-        }
-        fade.FadeOut();
     }
 
     string grabScene(string nextSceneName)
@@ -72,20 +57,8 @@ public class SwapScenes : MonoBehaviour
                 return "WaitingRoomScene";
             case "WaitingRoomScene":
                 return "ExamRoomScene";
-            case "ExamRoomScene":
-                return "SchoolScene";
             default:
                 return "TestingScene";
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("CHANGE!");
-            swapGameScene();
-
         }
     }
 

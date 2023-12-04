@@ -14,6 +14,8 @@ public class WaitingRoomScript : MonoBehaviour
     public GameObject npc2;
     public GameObject npc3;
 
+    public Dialogue dialogueScript;
+
     void Start()
     {
         StartCoroutine(Type());
@@ -25,6 +27,7 @@ public class WaitingRoomScript : MonoBehaviour
         {
             textDisplay.text += letter;
             yield return new WaitForSeconds(typingSpeed);
+            dialogueScript.PlayRandomDialogue();
         }
         yield return new WaitForSeconds(2f);
 
