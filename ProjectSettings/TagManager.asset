@@ -8,6 +8,8 @@ TagManager:
   - NPC_NonInteractable
   - Red
   - Blue
+  - InteractableNPC
+  - NPC_Groupie
   layers:
   - Default
   - TransparentFX

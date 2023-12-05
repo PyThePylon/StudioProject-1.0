@@ -867,6 +867,20 @@ MonoBehaviour:
   audibleAudioSources: []
   overstimulationThreshold: 1.5
   overstimulationIntensity: 0.5
+--- !u!114 &1034983437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034983434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66089ec20b7fd694988c771c690d10e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 5
+  rotationDistance: 5
 --- !u!1 &1343331344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,7 +1621,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1741247000992295155, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
       propertyPath: m_TagString
-      value: NPC
+      value: InteractableNPC
       objectReference: {fileID: 0}
     - target: {fileID: 1741247000992295159, guid: c3cd861824a4c3d45a1d6186b1be9d51, type: 3}
       propertyPath: m_RootOrder
